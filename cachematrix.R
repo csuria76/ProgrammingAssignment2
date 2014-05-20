@@ -1,8 +1,17 @@
-## Put comments here that give an overall description of what your
-## functions do
+## This R file contains two functions that allow us to cache inverse matrix calculation
+## The first funtion makeCacheMatrix creates a "special matrix" (a list) with the functions get(), set() (to get and set the matrix) 
+## and getinv() and setinv() to cache and recover the inverse matrix.
+## The second function cacheSolve takes the "special matrix" (the list created with the first function)
+## and returns the inverse of the matrix if cached or calculates it and then caches it and returns it at the end.
 
-## Write a short comment describing this function
-
+## The function makeCacheMatrix 
+  ## First we initialize the cached inverse to NULL
+  ## We define set() function to set the matrix and initialize cached inverse to NULL 
+  ## We define get() return the matrix
+  ## We define setinv() to chache inverse matrix
+  ## We define getinv() to return the chached inverse matrix
+  ## Finally we return a four objects list with functions get() and set() (to get and set the matrix) and functions setinv() and getinv() 
+  ## (to get and set inverse)
 makeCacheMatrix <- function(x = matrix()) {
   inv <- NULL
   set <- function(y) {
@@ -18,10 +27,14 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
-
+## The function cacheSolve:
+  ## First gets the chached value
+  ## If that cached value is not null prints a message and returns the inverse matrix then quits the function
+  ## If it did not return gets the matrix
+  ## Calculates inverse matrix using solve() 
+  ## Caches the inverse matrix
+  ## and prints (and returns) it
 cacheSolve <- function(x, ...) {
-  ## Return a matrix that is the inverse of 'x'
   inv <- x$getinv()
   if(!is.null(inv)) {
     message("getting cached data")
